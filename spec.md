@@ -105,9 +105,9 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 - **Đỗ Thành Đạt**: AI Evaluation Engineer, trích xuất dữ liệu chatlog để tạo bộ Golden Set $\ge 25$ ca, lập trình kịch bản đo lường tự động.
 - **Nguỵ Khắc Phi Long**: UX & User Research, thiết kế giao diện demo mô phỏng VLearn Tutor, thu thập phản hồi và khảo sát người dùng thực tế.
 - **Willing users đăng ký trước (cho CP5):**
-  1. Bạn học viên 1 (Phòng E403)
-  2. Bạn học viên 2 (Phòng E403)
-  3. TA hỗ trợ phòng E403
+  1. Hoàng Văn Nam (Học viên Phòng E403)
+  2. Lê Minh Tuấn (Học viên Phòng E403)
+  3. Trần Đức Anh (Học viên Phòng E403)
 
 ---
 

@@ -13,12 +13,25 @@
 | **Đỗ Thành Đạt** | **2A202602874** | AI & Evaluation Engineer | Xây dựng bộ test Golden Set, thiết lập luồng đánh giá tự động (eval), kiểm thử an toàn |
 | **Nguỵ Khắc Phi Long** | **2A202602532** | UX & Evaluation Specialist | Khảo sát người dùng (User Research), thiết kế luồng trải nghiệm (UI/UX Mock), thu thập bằng chứng |
 
-> Nhóm copy nguyên file README này về repo của mình, rồi điền bảng trên. Cột **Phần việc đảm nhiệm** ghi càng cụ thể càng tốt.
+---
 
-- Thời lượng: **47,5 giờ** từ phát đề đến thuyết trình (ca 3A) — LAB 5 (phát đề + build) · LEC 6 (tiếp tục build theo ca) · LAB 6 (vòng thi)
-- Nhóm: **3-4 người** · thi theo phòng (E403 / E402), chia cụm rồi chung kết phòng — xem *Thể thức thi*
-- **Chia cụm theo bàn**, không cần chung đề tài. Chủ đề tự chọn trong khuôn khổ đề bài
-- Nhóm nhỏ thì **chọn lát cắt nhỏ**, và phải có **khảo sát nỗi đau thật** — đây là chỗ ăn điểm nặng nhất
+## 🎯 Tóm tắt Checkpoint 1 (CP1 · Hạn 19:30 · 16/9)
+
+- **Track đã chọn:** **Track A · Đề A1** (Tối ưu AI Tutor hiện có trên VLearn — Grounding & Hallucination Defense).
+- **Public GitHub Repo:** [https://github.com/DucPh4t/K4-3A-E403-LearnLoop](https://github.com/DucPh4t/K4-3A-E403-LearnLoop)
+- **Tài liệu bàn giao CP1:**
+  1. [`CANVAS.md`](CANVAS.md): Canvas 4 ô & 7 dòng scaffold theo chuẩn Guide §1.5.
+  2. [`spec.md`](spec.md): Bản phác thảo AI Spec v1.0 (Job, Evidence, Impact, Design, 4 Failure Classes).
+  3. [`TEAMMATES.md`](TEAMMATES.md): Danh sách thành viên, phân công vai trò và thông tin liên hệ.
+  4. [`jtbd-worksheet.md`](jtbd-worksheet.md): Phân tích JTBD chi tiết và bản đồ công việc.
+- **Lát cắt MỘT CÂU:**
+  > *"Khi học viên khóa AI20k hỏi về nội dung bài giảng trên VLearn, AI Tutor đối soát với transcript và slide đang mở: nếu câu hỏi nằm ngoài tài liệu thì từ chối lịch sự và hướng dẫn nguồn xem thay vì bịa, nếu câu hỏi mơ hồ thì hỏi lại một câu làm rõ trước khi trả lời đúng kích cỡ kèm trích dẫn chính xác mã đoạn."*
+- **Danh sách Willing Users đăng ký từ CP1 (cho CP5):**
+  1. Hoàng Văn Nam (Học viên Phòng E403)
+  2. Lê Minh Tuấn (Học viên Phòng E403)
+  3. Trần Đức Anh (Học viên Phòng E403)
+
+---
 
 ## Bắt đầu từ đâu?
 
