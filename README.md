@@ -4,7 +4,7 @@
 
 ## 👥 Thành viên nhóm & Phân công vai trò
 
-**Lớp:** 3A · **Phòng:** E403 · **Cụm:** Bàn 1 · **Track:** [Chờ chốt: Track A / Track B]
+**Lớp:** 3A · **Phòng:** E403 · **Cụm:** Bàn 1 · **Track:** Track A · Đề A1 (Tối ưu AI Tutor hiện có trên VLearn)
 
 | Họ và Tên | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 |---|---|---|---|
