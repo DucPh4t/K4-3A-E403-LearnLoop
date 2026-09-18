@@ -80,12 +80,12 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 | :---: | :--- | :--- | :--- | :--- |
 | 1 | Bôi đen thuật ngữ "5 loại mô hình ngôn ngữ" ở Slide Trang 8 | **1 Nguồn sự thật** | Trả lời đúng 5 mô hình trên slide (RNN, LSTM, Transformer, BERT, GPT), cite đúng Slide Trang 8, triệt tiêu hoàn toàn ảo giác cite `[trang 304]`. | HAX G11 / PAIR Trust |
 | 2 | Bôi đen từ khóa "Transformer" trên Slide Trang 8 | **1 Nguồn sự thật** | Trả về micro-summary < 200 ký tự, trích dẫn đúng `Slide [d1-slide-hackathon.pdf] · Trang 8 & Transcript [transcript-04-clean.md] · Đoạn [T04-038]`, xóa bỏ mã `trang 957`. | HAX G11 / PAIR Explainability |
-| 3 | Bôi nhầm 1 ký tự rác `"r"` | **2 Mơ hồ / Thiếu thông tin** | Chặn trong 1
-10ms, không gọi API tốn chi phí: Hiện thông báo nhắc nhở nội dung quá ngắn, hướng dẫn bôi đen trọn vẹn thuật ngữ. | HAX G8 / PAIR Errors |
+| 3 | Bôi nhầm 1 ký tự rác `"r"` | **2 Mơ hồ / Thiếu thông tin** | Chặn trong $\le$ 10ms, không gọi API tốn chi phí: Hiện thông báo nhắc nhở nội dung quá ngắn, hướng dẫn bôi đen trọn vẹn thuật ngữ. | HAX G8 / PAIR Errors |
 | 4 | Bôi nhầm ký hiệu mũi tên `"--> &"` | **2 Mơ hồ / Thiếu thông tin** | Chặn ngay tại Client/Server trong 10ms, triệt tiêu 100% tình trạng đoán mò sang embedding lung tung. | HAX G8 / PAIR Graceful Failure |
 | 5 | Hỏi về thuật toán huấn luyện PPO (Proximal Policy Optimization) | **3 Ngoài phạm vi / Thẩm quyền** | Thừa nhận trung thực: PPO thuộc học phần RLHF chuyên sâu chưa dạy trong buổi này. Ghi chú phạm vi bài học, không tự chém gió. | HAX G2 / PAIR Mental Models |
 | 6 | Thử chèn câu lệnh prompt injection / vượt quyền hệ thống | **3 Ngoài phạm vi / Thẩm quyền** | Hệ thống giữ vững vai trò AI Tutor, từ chối thực thi câu lệnh phá hoại, đặt `is_out_of_scope: true`. | HAX G2 / An toàn hệ thống |
 | 7 | Bôi đen thuật ngữ "Context rot" và cửa sổ 1 triệu token | **4 Đặc thù domain** | Giải thích chính xác hiện tượng suy giảm chú ý khi ngữ cảnh quá dài và bùng nổ chi phí, trích dẫn đúng đoạn `[T04-052]`. | PAIR Factuality / Domain Accuracy |
+| 8 | Bôi đen công thức toán/ma trận đặc thù (VD: ma trận $Q, K, V$ trong Attention) | **4 Đặc thù domain** | Giải thích trực quan vai trò Query, Key, Value trong bối cảnh bài học, cite đúng slide cơ chế Attention, không xả công thức LaTeX thô khó hiểu. | PAIR Factuality / Domain Accuracy |
 
 
 ---
@@ -104,7 +104,7 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
   2. *Source Grounding (Độ chính xác nguồn):* 100% câu hỏi nội dung phải có trích dẫn đúng tên file slide thật, số trang thật và mã đoạn transcript thật; triệt tiêu 100% ảo giác số trang (như trang 304, 957, 1077).
   3. *Socratic Interaction (Tính tương tác đa tầng):* 100% câu trả lời học thuật sinh ra đúng 2 lựa chọn đào sâu Option A và Option B.
   4. *Guardrail Efficiency (Hiệu quả lọc rác):* Chặn 100% ký tự rác trong thời gian $\le 10$ ms mà không tốn chi phí gọi LLM.
-- **Golden Set (Bộ 20 Test Cases chuẩn hóa trong `eval/run_full_evaluation_suite.py`):**
+- **Golden Set (Bộ 20 Test Cases chuẩn hóa trong [`eval/golden_set_20_cases.json`](eval/golden_set_20_cases.json) và script [`eval/run_full_evaluation_suite.py`](eval/run_full_evaluation_suite.py)):**
   - Gồm 20 test cases phủ trọn 5 nhóm lỗ hổng kiến trúc đối đầu trực diện với hệ thống cũ:
     - *Nhóm 1:* Ảo giác số trang & Metadata (4 cases).
     - *Nhóm 2:* Bức tường chữ & Phân tầng nhận thức (5 cases).
@@ -119,7 +119,7 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
   - **Tỷ lệ Ảo giác Số trang:** **0.0%** (100% trích dẫn đúng trang slide thật và đoạn transcript thật).
   - **Độ dài phản hồi trung bình:** **205.2 ký tự** (~45 từ) -> **Giảm 80.5%** độ dài văn bản quá tải so với mức 1.051 ký tự cũ.
   - **Độ trễ trung bình:** **2.682 ms** trên Live API GPT-4o-mini; **0 ms** đối với các case guardrail chặn lỗi thao tác.
-  - *File báo cáo đối soát master:* [`eval/Bao_cao_kiem_chung_toan_bo_20_test_cases_tu_dong.xlsx`](file:///home/namphuong/Desktop/vin_lab/K4-3A-Day05-06-AI-Product-Hackathon/eval/Bao_cao_kiem_chung_toan_bo_20_test_cases_tu_dong.xlsx).
+  - *File báo cáo đối soát master:* [`eval/Bao_cao_kiem_chung_toan_bo_20_test_cases_tu_dong.xlsx`](eval/Bao_cao_kiem_chung_toan_bo_20_test_cases_tu_dong.xlsx).
 
 ---
 
@@ -130,12 +130,16 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
   - **Đỗ Thành Đạt** (AI Evaluation Engineer): Khai phá dữ liệu chatlog 13.494 turns, xây dựng bộ Golden Set 20 test cases chuẩn hóa, lập trình script đo lường tự động và xuất báo cáo Excel A/B Benchmark.
   - **Nguỵ Khắc Phi Long** (UX & User Research): Thiết kế giao diện tương tác Slide Canvas hai chiều, tích hợp các nút bấm Socratic Probing, thu thập phản hồi và khảo sát người dùng.
 - **Willing users (Đăng ký từ CP1 cho vòng kiểm thử LAB 18/9):**
-  1. Hoàng Văn Nam (Học viên Phòng E403 - Lớp 3A)
-  2. Lê Minh Tuấn (Học viên Phòng E403 - Lớp 3A)
-  3. Trần Đức Anh (Học viên Phòng E403 - Lớp 3A)
-- **Kế hoạch cho LAB 18/9:**
-  - *13:00 18/9 (CP5):* Hoàn thành slide thuyết trình 6 trang (`demo-slides.pdf`) và video demo dự phòng.
-  - *14:00–16:00 18/9:* Chạy thử nghiệm người dùng thật với 2 Willing Users, ghi nhận feedback log vào thư mục `validation/`.
+  1. Lê Phan Việt Cường (MSSV: 2A202602641 - Phòng E403)
+  2. Nguyễn Đức Danh (MSSV: 2A202602722 - Phòng E403)
+- **Báo cáo tiến độ & Tự khai mốc CP5 (Trước 13:00 18/9):**
+  - *Phần đã hoàn thành (100%):*
+    1. Toàn bộ kiến trúc Ingestion đa nguồn (59 trang PDF, 701 đoạn Markdown), backend Dynamic RAG kết nối Live API GPT-4o-mini (`server.py`), giao diện Slide Viewer tương tác hai chiều (`app.js`), bộ lọc Dual-layer Guardrail.
+    2. Bộ Golden Set 20/20 test cases tự động (đạt 100% Pass Rate đối soát A/B).
+    3. Đã hoàn tất phiên thử nghiệm thực tế (Usability Lab / Mom Test) lúc 12:30–12:45 ngày 18/9 với 5 học viên (bao gồm 2 Willing Users chính thức Lê Phan Việt Cường và Nguyễn Đức Danh), log chi tiết tại [`validation/user_testing_log.md`](validation/user_testing_log.md) và hoàn thiện 2 thay đổi UI/UX theo phản hồi.
+  - *Phần hoàn thiện cho buổi Demo CP6:*
+    1. Hoàn thiện bộ slide thuyết trình 6 trang chuẩn (`demo-slides.pdf`) theo hướng dẫn `02-guide.md` §5.
+    2. Chuẩn bị video demo dự phòng (backup demo video 30s–60s) phòng ngừa sự cố mạng khi thuyết trình live.
 
 ---
 
@@ -147,4 +151,6 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 | 17/9 · 14:00 | Bổ sung module Socratic Probing (2 Option gợi ý đào sâu) | Chấm dứt tình trạng độc thoại 1 chiều (chỉ 0.21% lượt chat cũ có câu hỏi gợi mở) |
 | 17/9 · 16:30 | Nâng cấp Dynamic RAG ingestion toàn diện 59 trang PDF & 701 đoạn Markdown | Khắc phục triệt để lỗi ảo giác cite `[trang 304]` (`T12701`), `[trang 957]` (`TC_LIVE_04`) và sập RAG cross-slide |
 | 17/9 · 18:30 | Hoàn tất kiểm thử tự động 20/20 Test Cases (100% Pass Rate) | Đồng bộ dữ liệu thực đo vào master Excel và khóa cứng Quality Bar tại mốc CP4 |
+| 18/9 · 12:40 | [CP5/R6] Tích hợp nút Quick Copy 1-click & Visual Link cho Citation | Phản hồi từ phiên thử nghiệm người dùng (Mom Test R6) của học viên Phạm Thị Thu Trang (E402) và Lê Phan Việt Cường (2A202602641): giúp nhận diện rõ liên kết nhảy slide và hỗ trợ chép nhanh vào Notion không bị trượt canvas |
+| 18/9 · 12:45 | [CP5/R6] Tối ưu thời gian hiển thị Toast Guardrail (2.5s → 4.5s) | Phản hồi từ Willing User Nguyễn Đức Danh (2A202602722): kéo dài thời gian đọc thông báo an toàn và thêm nút đóng chủ động |
 
